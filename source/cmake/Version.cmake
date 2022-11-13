@@ -177,3 +177,11 @@ endif()
 
 #will always be printed in its entirety based on version file configuration to avail revision monitoring by repo owners
 message(STATUS "X265 RELEASE VERSION ${X265_VERSION}")
+
+## x265/source/cmake/version.cmake最后增加：
+# msys hg cannot get correct version info
+set(X265_LATEST_TAG "3.5")
+set(X265_TAG_DISTANCE "68")
+set(X265_REVISION_ID "392f15bb90f8")
+set(X265_VERSION "3.5+68-392f15bb90f8")
+message(STATUS "msys hg x265 version ${X265_VERSION}")
