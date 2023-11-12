@@ -680,11 +680,20 @@ int x265_param_default_preset(x265_param* param, const char* preset, const char*
         }
         else if (!strcmp(tune, "simple"))
         {
+            param->bEnableEarlySkip = 0;
+            param->bIntraInBFrames = 0;
+            param->bEnableRectInter = 1;
+            param->lookaheadDepth = 25;
+            param->rdLevel = 4;
+            param->rdoqLevel = 2;
+            param->psyRdoq = 1.0;
+            param->limitModes = 1;
+            param->lookaheadSlices = 4; // limit parallelism as already enough work exists
             param->searchMethod = 3;
             param->subpelRefine = 5;
             param->searchRange = 48;
             param->bEnableWeightedBiPred = 1;
-            param->rc.aqMode = 4;
+            param->rc.aqMode = 5;
             if (param->lookaheadDepth > 5) param->bframes = 5;
             if (param->maxNumReferences < 3) param->maxNumReferences = 3;
         }
