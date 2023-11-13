@@ -689,13 +689,14 @@ int x265_param_default_preset(x265_param* param, const char* preset, const char*
             param->psyRdoq = 1.0;
             param->limitModes = 1;
             param->lookaheadSlices = 4; // limit parallelism as already enough work exists
+            param->bHistBasedSceneCut = 1;
             param->searchMethod = 3;
             param->subpelRefine = 5;
             param->searchRange = 48;
             param->bEnableWeightedBiPred = 1;
             param->rc.aqMode = 5;
-            if (param->lookaheadDepth > 5) param->bframes = 5;
-            if (param->maxNumReferences < 3) param->maxNumReferences = 3;
+            param->bframes = 5;
+            param->maxNumReferences = 3;
         }
         else if (!strcmp(tune, "vmaf"))  /*Adding vmaf for x265 + SVT-HEVC integration support*/
         {
