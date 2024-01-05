@@ -678,6 +678,28 @@ int x265_param_default_preset(x265_param* param, const char* preset, const char*
                 }
             }
         }
+        else if (!strcmp(tune, "v-good"))
+        {
+            param->bEnableEarlySkip = 0;
+            param->bIntraInBFrames = 0;
+            param->bEnableRectInter = 1;
+            param->lookaheadDepth = 25;
+            param->rdLevel = 4;
+            param->rdoqLevel = 2;
+            param->psyRdoq = 1.0;
+            param->limitModes = 1;
+            param->lookaheadSlices = 4; // limit parallelism as already enough work exists
+            param->bHistBasedSceneCut = 1;
+            param->searchMethod = 2;
+            param->subpelRefine = 5;
+            param->searchRange = 48;
+            param->bEnableWeightedBiPred = 1;
+            param->rc.aqMode = 5;
+            param->bframes = 5;
+            param->maxNumReferences = 3;
+	    param->bEnableStrongIntraSmoothing = false;
+	    param->bEnableSAO = false;
+        }
         else if (!strcmp(tune, "simple"))
         {
             param->bEnableEarlySkip = 0;
@@ -690,13 +712,14 @@ int x265_param_default_preset(x265_param* param, const char* preset, const char*
             param->limitModes = 1;
             param->lookaheadSlices = 4; // limit parallelism as already enough work exists
             param->bHistBasedSceneCut = 1;
-            param->searchMethod = 3;
+            param->searchMethod = 2;
             param->subpelRefine = 5;
             param->searchRange = 48;
             param->bEnableWeightedBiPred = 1;
             param->rc.aqMode = 5;
             param->bframes = 5;
             param->maxNumReferences = 3;
+	    param->bLimitSAO = true;
         }
         else if (!strcmp(tune, "vmaf"))  /*Adding vmaf for x265 + SVT-HEVC integration support*/
         {
